@@ -13,7 +13,7 @@ export const PlanetDescription = () => {
 useEffect(()=>{
 	async function getplanet() {
 	
-		let response = await fetch("https://swapi.dev/api/planet/" + id)
+		let response = await fetch("https://swapi.dev/api/planets/" + id)
 		let data = await response.json() 
 		setplanet(data)
 
@@ -23,10 +23,10 @@ useEffect(()=>{
 	return (
 		<div className="container">
 			<h1>Name:{planet.name}</h1>
-			<h3>Hair Color:{planet.hair_color}</h3>
-			<h3>Height:{planet.height}</h3>
-			<h3>Mass:{planet.mass}</h3>
-			<h3>Eye Color:{planet.eye_color}</h3>
+			<h3>Rotation Period:{planet.rotation_period}</h3>
+			<h3>Gravity:{planet.gravity}</h3>
+			<h3>Population:{planet.population}</h3>
+			<h3>Surface Water:{planet.surface_water}</h3>
 		</div>
 	);
 };

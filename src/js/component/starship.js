@@ -5,18 +5,18 @@ import { Context } from "../store/appContext";
 
 
 
-export const starship = () => {
+export const Starship = () => {
 	const { store, actions } = useContext(Context);
-const [characters,setStarsip] = useState([])
+const [starships,setStarships] = useState([])
 useEffect(()=>{
-	async function getCharacters() {
+	async function getStarships() {
 	
-		let response = await fetch("https://swapi.dev/api/people")
+		let response = await fetch("https://swapi.dev/api/starships")
 		let data = await response.json() 
-		setCharacters(data.results)
+		setStarships(data.results)
 
 	}
-	getCharacters();
+	getStarships();
 },[])  
 function handleFavorites(item) {
 	if(store.favorites.includes(item)){
@@ -26,20 +26,20 @@ function handleFavorites(item) {
 		actions.addFavorites(item)
 	}
 }
-console.log(characters)
+console.log(starships)
 	return (
 		<div className="container d-flex col-12 overflow-auto mt-5 justify-content-center" >
 
-			{characters?.map((character, index)=>(
+			{starships?.map((starship, index)=>(
 				<div class="card" style={{minWidth:"18rem"}}>
-				  <div class="card-title">{character.name}</div>
+				  <div class="card-title">{starship.name}</div>
 				  <Link
-					to={`/characterdescription/` + (index + 1)}
+					to={`/starshipdescription/` + (index + 1)}
 					className="btn btn-light text-dark"
 				  >
 					Learn More!
 				  </Link>
-				  <button onClick={()=>handleFavorites(character.name)}>❤️</button>
+				  <button onClick={()=>handleFavorites(starship.name)}>❤️</button>
 				  </div>
 				
 			))}
